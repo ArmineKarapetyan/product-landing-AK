@@ -85,8 +85,44 @@
         </div>
       </section>
 
+      <!-- GALLERY -->
+      <section id="gallery" class="section alt" aria-label="Product gallery">
+        <div class="container">
+          <h2>Product Gallery</h2>
+          <p class="section-subtitle">Explore our product features and designs.</p>
+
+          <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ui">UI</button>
+            <button class="filter-btn" data-filter="api">API</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-item" data-category="ui">
+              <img src="https://source.unsplash.com/random/400x300/?product,design" alt="Product feature 1" class="gallery-image">
+            </div>
+            <div class="gallery-item" data-category="api">
+              <img src="https://source.unsplash.com/random/400x300/?technology,business" alt="Product feature 2" class="gallery-image">
+            </div>
+            <div class="gallery-item" data-category="mobile">
+              <img src="https://source.unsplash.com/random/400x300/?startup,innovation" alt="Product feature 3" class="gallery-image">
+            </div>
+            <div class="gallery-item" data-category="ui">
+              <img src="https://source.unsplash.com/random/400x300/?app,software" alt="Product feature 4" class="gallery-image">
+            </div>
+            <div class="gallery-item" data-category="mobile">
+              <img src="https://source.unsplash.com/random/400x300/?digital,modern" alt="Product feature 5" class="gallery-image">
+            </div>
+            <div class="gallery-item" data-category="api">
+              <img src="https://source.unsplash.com/random/400x300/?tech,creative" alt="Product feature 6" class="gallery-image">
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- BENEFITS -->
-      <section id="benefits" class="section alt" aria-label="Benefits">
+      <section id="benefits" class="section" aria-label="Benefits">
         <div class="container">
           <h2>Benefits</h2>
           <p class="section-subtitle">3 bullet points with icons (emojis are fine).</p>
@@ -183,6 +219,16 @@
         </div>
       </div>
     </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="Image lightbox" aria-modal="true">
+      <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+      <button class="lightbox-prev" aria-label="Previous image">&#8249;</button>
+      <button class="lightbox-next" aria-label="Next image">&#8250;</button>
+      <div class="lightbox-content">
+        <img id="lightboxImage" src="" alt="" class="lightbox-img">
+      </div>
+    </div>
 
     <!-- Modal -->
     <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
