@@ -148,16 +148,52 @@ document.querySelectorAll(".priceBtn").forEach((btn) => {
   });
 });
 
+// Gallery filtering
+const filterButtons = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Update active filter button
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    
+    const filter = button.getAttribute('data-filter');
+    
+    // Filter gallery items
+    galleryItems.forEach(item => {
+      if (filter === 'all' || item.getAttribute('data-category') === filter) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  });
+});
+
 // Lightbox functionality
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
 const lightboxClose = document.querySelector('.lightbox-close');
-const galleryImages = document.querySelectorAll('.gallery-image');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+let currentImageIndex = 0;
+let visibleImages = [];
+
+// Get all visible gallery images (for filtering support)
+function getVisibleImages() {
+  return Array.from(galleryItems)
+    .filter(item => !item.classList.contains('hidden'))
+    .map(item => item.querySelector('.gallery-image'));
+}
 
 // Open lightbox
-function openLightbox(imageSrc, imageAlt) {
-  lightboxImage.src = imageSrc;
-  lightboxImage.alt = imageAlt;
+function openLightbox(index) {
+  visibleImages = getVisibleImages();
+  if (visibleImages.length === 0) return;
+  
+  currentImageIndex = index;
+  updateLightboxImage();
   lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -168,10 +204,45 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
+// Update lightbox image
+function updateLightboxImage() {
+  if (visibleImages.length === 0) return;
+  
+  // Ensure index is within bounds
+  if (currentImageIndex < 0) {
+    currentImageIndex = visibleImages.length - 1;
+  } else if (currentImageIndex >= visibleImages.length) {
+    currentImageIndex = 0;
+  }
+  
+  const image = visibleImages[currentImageIndex];
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.alt;
+}
+
+// Navigate to next image
+function nextImage() {
+  if (visibleImages.length === 0) return;
+  currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
+  updateLightboxImage();
+}
+
+// Navigate to previous image
+function prevImage() {
+  if (visibleImages.length === 0) return;
+  currentImageIndex = (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
+  updateLightboxImage();
+}
+
 // Open lightbox when clicking gallery images
-galleryImages.forEach((image) => {
+galleryItems.forEach((item) => {
+  const image = item.querySelector('.gallery-image');
   image.addEventListener('click', () => {
-    openLightbox(image.src, image.alt);
+    visibleImages = getVisibleImages();
+    const actualIndex = visibleImages.indexOf(image);
+    if (actualIndex !== -1) {
+      openLightbox(actualIndex);
+    }
   });
 });
 
@@ -185,9 +256,32 @@ lightbox.addEventListener('click', (e) => {
   }
 });
 
-// Close lightbox with Escape key
+// Next/prev buttons
+lightboxNext.addEventListener('click', (e) => {
+  e.stopPropagation();
+  nextImage();
+});
+
+lightboxPrev.addEventListener('click', (e) => {
+  e.stopPropagation();
+  prevImage();
+});
+
+// Keyboard navigation for lightbox
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-    closeLightbox();
+  if (!lightbox.classList.contains('active')) return;
+  
+  switch(e.key) {
+    case 'Escape':
+      closeLightbox();
+      break;
+    case 'ArrowRight':
+      e.preventDefault();
+      nextImage();
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      prevImage();
+      break;
   }
 });
