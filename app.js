@@ -147,3 +147,47 @@ document.querySelectorAll(".priceBtn").forEach((btn) => {
     pricingMessage.textContent = `You selected: ${plan}. (Demo interaction ✅)`;
   });
 });
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.querySelector('.lightbox-close');
+const galleryImages = document.querySelectorAll('.gallery-image');
+
+// Open lightbox
+function openLightbox(imageSrc, imageAlt) {
+  lightboxImage.src = imageSrc;
+  lightboxImage.alt = imageAlt;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// Close lightbox
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Open lightbox when clicking gallery images
+galleryImages.forEach((image) => {
+  image.addEventListener('click', () => {
+    openLightbox(image.src, image.alt);
+  });
+});
+
+// Close lightbox with close button
+lightboxClose.addEventListener('click', closeLightbox);
+
+// Close lightbox when clicking backdrop
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// Close lightbox with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    closeLightbox();
+  }
+});
