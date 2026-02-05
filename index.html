@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Landing v1</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="logo">ProductName</div>
+
+        <nav class="nav">
+          <a href="#showcase">Showcase</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-label="Hero section">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1>Design faster. Launch smarter.</h1>
+            <p class="hero-subtitle">
+              A simple product landing page template that looks good on mobile and desktop.
+            </p>
+
+            <div class="hero-actions">
+              <button id="ctaBtn" class="btn btn-primary">Get Started</button>
+              <a class="btn btn-secondary" href="#pricing">See Pricing</a>
+            </div>
+
+            <p id="ctaMessage" class="cta-message" aria-live="polite"></p>
+          </div>
+
+          <div class="hero-card" role="img" aria-label="Product preview card">
+            <div class="hero-card-top">
+              <span class="pill">New</span>
+              <span class="pill pill-muted">v1</span>
+            </div>
+            <div class="hero-card-body">
+              <h3>Product Preview</h3>
+              <p>Clean sections, cards, and responsive layout.</p>
+              <ul class="mini-list">
+                <li>✅ Semantic HTML</li>
+                <li>✅ Mobile friendly</li>
+                <li>✅ CTA interaction</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCT SHOWCASE -->
+      <section id="showcase" class="section" aria-label="Product showcase">
+        <div class="container">
+          <h2>Product Showcase</h2>
+          <p class="section-subtitle">At least 3 cards (features/products).</p>
+
+          <div class="grid grid-3">
+            <article class="card">
+              <h3>Feature One</h3>
+              <p>Create a clear hero + sections with a clean layout.</p>
+              <span class="tag">Fast setup</span>
+            </article>
+
+            <article class="card">
+              <h3>Feature Two</h3>
+              <p>Responsive cards and typography that work on mobile.</p>
+              <span class="tag">Responsive</span>
+            </article>
+
+            <article class="card">
+              <h3>Feature Three</h3>
+              <p>Interactive CTA button using JavaScript (app.js).</p>
+              <span class="tag">Functional</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- BENEFITS -->
+      <section id="benefits" class="section alt" aria-label="Benefits">
+        <div class="container">
+          <h2>Benefits</h2>
+          <p class="section-subtitle">3 bullet points with icons (emojis are fine).</p>
+
+          <ul class="benefits">
+            <li>⚡ Quick to edit — just update text and you’re done.</li>
+            <li>📱 Mobile-first layout with simple responsive rules.</li>
+            <li>🔒 Clean structure using semantic tags and accessible defaults.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section id="testimonials" class="section" aria-label="Testimonials">
+        <div class="container">
+          <h2>Testimonials</h2>
+          <p class="section-subtitle">At least 2 testimonials.</p>
+
+          <div class="grid grid-2">
+            <figure class="quote">
+              <blockquote>
+                “This is exactly what I needed to practice Git + PRs without getting lost in code.”
+              </blockquote>
+              <figcaption>— Alex, Product Designer</figcaption>
+            </figure>
+
+            <figure class="quote">
+              <blockquote>
+                “Looks clean on mobile and has all required sections. Super straightforward.”
+              </blockquote>
+              <figcaption>— Sam, Teammate</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing" class="section alt" aria-label="Pricing">
+        <div class="container">
+          <h2>Pricing</h2>
+          <p class="section-subtitle">2–3 pricing tiers.</p>
+
+          <div class="grid grid-3">
+            <article class="price-card">
+              <h3>Starter</h3>
+              <p class="price">$0</p>
+              <ul>
+                <li>Basic layout</li>
+                <li>3 feature cards</li>
+                <li>Email support</li>
+              </ul>
+              <button class="btn btn-secondary priceBtn" data-plan="Starter">Choose Starter</button>
+            </article>
+
+            <article class="price-card featured" aria-label="Most popular plan">
+              <div class="ribbon">Most popular</div>
+              <h3>Pro</h3>
+              <p class="price">$9</p>
+              <ul>
+                <li>Everything in Starter</li>
+                <li>Extra sections</li>
+                <li>Priority support</li>
+              </ul>
+              <button class="btn btn-primary priceBtn" data-plan="Pro">Choose Pro</button>
+            </article>
+
+            <article class="price-card">
+              <h3>Team</h3>
+              <p class="price">$19</p>
+              <ul>
+                <li>Team usage</li>
+                <li>Shared updates</li>
+                <li>Onboarding help</li>
+              </ul>
+              <button class="btn btn-secondary priceBtn" data-plan="Team">Choose Team</button>
+            </article>
+          </div>
+
+          <p id="pricingMessage" class="cta-message" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Footer">
+      <div class="container footer-inner">
+        <div class="social">
+          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank" rel="noreferrer">X</a>
+        </div>
+
+        <div class="copyright">
+          © <span id="year"></span> ProductName. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
